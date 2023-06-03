@@ -55,16 +55,10 @@ let users = [
     }
 ];
 
-
 let userPhoneArray = [];
 users.forEach(function (user) {
-    for (let key in user) {
-        if (key === 'balance') {
-            let balanceValue = parseFloat(user[key].replace(/[$,]/g, ''));
-            if (balanceValue > 2000) {
-                userPhoneArray.push(user.phone);
-            }
-        }
+    if (parseFloat(user.balance.replace(/[$,]/g, '')) > 2000) {
+        userPhoneArray.push(user.phone);
     }
 });
 
@@ -72,12 +66,8 @@ console.log(`Array of users with balance over $2000 : ${userPhoneArray}`);
 
 let sumOfBalances = 0;
 users.forEach(function (user) {
-    for (let key in user) {
-        if (key === 'balance') {
-            let balanceValue = parseFloat(user[key].replace(/[$,]/g, ''));
-            sumOfBalances += balanceValue;
-        }
-    }
+    let balanceValue = parseFloat(user.balance.replace(/[$,]/g, ''));
+    sumOfBalances += balanceValue;
 });
 
 console.log(`The sum of balances is ${sumOfBalances}`);
